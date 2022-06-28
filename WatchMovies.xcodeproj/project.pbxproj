@@ -13,6 +13,9 @@
 		EB0DFD1E286B828100DEBC5F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB0DFD1D286B828100DEBC5F /* Preview Assets.xcassets */; };
 		EB0DFD20286B828100DEBC5F /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0DFD1F286B828100DEBC5F /* Persistence.swift */; };
 		EB0DFD23286B828100DEBC5F /* WatchMovies.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EB0DFD21286B828100DEBC5F /* WatchMovies.xcdatamodeld */; };
+		EB0DFD3D286B89DC00DEBC5F /* AppIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0DFD3C286B89DC00DEBC5F /* AppIcons.swift */; };
+		EB0DFD3F286B8A4200DEBC5F /* AppSpacings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0DFD3E286B8A4200DEBC5F /* AppSpacings.swift */; };
+		EB0DFD41286B8ADB00DEBC5F /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0DFD40286B8ADB00DEBC5F /* AppColors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +26,9 @@
 		EB0DFD1D286B828100DEBC5F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		EB0DFD1F286B828100DEBC5F /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		EB0DFD22286B828100DEBC5F /* WatchMovies.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WatchMovies.xcdatamodel; sourceTree = "<group>"; };
+		EB0DFD3C286B89DC00DEBC5F /* AppIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIcons.swift; sourceTree = "<group>"; };
+		EB0DFD3E286B8A4200DEBC5F /* AppSpacings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSpacings.swift; sourceTree = "<group>"; };
+		EB0DFD40286B8ADB00DEBC5F /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +206,9 @@
 		EB0DFD38286B891300DEBC5F /* Themes */ = {
 			isa = PBXGroup;
 			children = (
+				EB0DFD3C286B89DC00DEBC5F /* AppIcons.swift */,
+				EB0DFD3E286B8A4200DEBC5F /* AppSpacings.swift */,
+				EB0DFD40286B8ADB00DEBC5F /* AppColors.swift */,
 			);
 			path = Themes;
 			sourceTree = "<group>";
@@ -297,6 +306,9 @@
 			files = (
 				EB0DFD20286B828100DEBC5F /* Persistence.swift in Sources */,
 				EB0DFD19286B827F00DEBC5F /* ContentView.swift in Sources */,
+				EB0DFD3D286B89DC00DEBC5F /* AppIcons.swift in Sources */,
+				EB0DFD3F286B8A4200DEBC5F /* AppSpacings.swift in Sources */,
+				EB0DFD41286B8ADB00DEBC5F /* AppColors.swift in Sources */,
 				EB0DFD23286B828100DEBC5F /* WatchMovies.xcdatamodeld in Sources */,
 				EB0DFD17286B827F00DEBC5F /* WatchMoviesApp.swift in Sources */,
 			);
