@@ -16,6 +16,9 @@
 		EB0DFD3D286B89DC00DEBC5F /* AppIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0DFD3C286B89DC00DEBC5F /* AppIcons.swift */; };
 		EB0DFD3F286B8A4200DEBC5F /* AppSpacings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0DFD3E286B8A4200DEBC5F /* AppSpacings.swift */; };
 		EB0DFD41286B8ADB00DEBC5F /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0DFD40286B8ADB00DEBC5F /* AppColors.swift */; };
+		EB0DFD44286B8BC300DEBC5F /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = EB0DFD43286B8BC300DEBC5F /* Alamofire */; };
+		EB0DFD47286B8BF500DEBC5F /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = EB0DFD46286B8BF500DEBC5F /* Toast */; };
+		EB0DFD49286B8C0B00DEBC5F /* toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0DFD48286B8C0B00DEBC5F /* toast.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +32,7 @@
 		EB0DFD3C286B89DC00DEBC5F /* AppIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIcons.swift; sourceTree = "<group>"; };
 		EB0DFD3E286B8A4200DEBC5F /* AppSpacings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSpacings.swift; sourceTree = "<group>"; };
 		EB0DFD40286B8ADB00DEBC5F /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
+		EB0DFD48286B8C0B00DEBC5F /* toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = toast.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +40,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB0DFD47286B8BF500DEBC5F /* Toast in Frameworks */,
+				EB0DFD44286B8BC300DEBC5F /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,6 +222,7 @@
 		EB0DFD39286B891800DEBC5F /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				EB0DFD48286B8C0B00DEBC5F /* toast.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -250,6 +257,10 @@
 			dependencies = (
 			);
 			name = WatchMovies;
+			packageProductDependencies = (
+				EB0DFD43286B8BC300DEBC5F /* Alamofire */,
+				EB0DFD46286B8BF500DEBC5F /* Toast */,
+			);
 			productName = WatchMovies;
 			productReference = EB0DFD13286B827F00DEBC5F /* WatchMovies.app */;
 			productType = "com.apple.product-type.application";
@@ -278,6 +289,10 @@
 				Base,
 			);
 			mainGroup = EB0DFD0A286B827F00DEBC5F;
+			packageReferences = (
+				EB0DFD42286B8BC300DEBC5F /* XCRemoteSwiftPackageReference "Alamofire" */,
+				EB0DFD45286B8BF500DEBC5F /* XCRemoteSwiftPackageReference "toast-swift" */,
+			);
 			productRefGroup = EB0DFD14286B827F00DEBC5F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -305,6 +320,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB0DFD20286B828100DEBC5F /* Persistence.swift in Sources */,
+				EB0DFD49286B8C0B00DEBC5F /* toast.swift in Sources */,
 				EB0DFD19286B827F00DEBC5F /* ContentView.swift in Sources */,
 				EB0DFD3D286B89DC00DEBC5F /* AppIcons.swift in Sources */,
 				EB0DFD3F286B8A4200DEBC5F /* AppSpacings.swift in Sources */,
@@ -511,6 +527,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		EB0DFD42286B8BC300DEBC5F /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		EB0DFD45286B8BF500DEBC5F /* XCRemoteSwiftPackageReference "toast-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/BastiaanJansen/toast-swift";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EB0DFD43286B8BC300DEBC5F /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EB0DFD42286B8BC300DEBC5F /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		EB0DFD46286B8BF500DEBC5F /* Toast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EB0DFD45286B8BF500DEBC5F /* XCRemoteSwiftPackageReference "toast-swift" */;
+			productName = Toast;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		EB0DFD21286B828100DEBC5F /* WatchMovies.xcdatamodeld */ = {
