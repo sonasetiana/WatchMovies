@@ -55,6 +55,10 @@
 		EB0DFD15286B827F00DEBC5F /* WatchMovies */ = {
 			isa = PBXGroup;
 			children = (
+				EB0DFD2C286B881500DEBC5F /* Common */,
+				EB0DFD2B286B880A00DEBC5F /* Data */,
+				EB0DFD2A286B880100DEBC5F /* Domain */,
+				EB0DFD29286B87F200DEBC5F /* Presentation */,
 				EB0DFD16286B827F00DEBC5F /* WatchMoviesApp.swift */,
 				EB0DFD18286B827F00DEBC5F /* ContentView.swift */,
 				EB0DFD1A286B828100DEBC5F /* Assets.xcassets */,
@@ -71,6 +75,154 @@
 				EB0DFD1D286B828100DEBC5F /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		EB0DFD29286B87F200DEBC5F /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				EB0DFD30286B884500DEBC5F /* Home */,
+				EB0DFD2F286B883F00DEBC5F /* Detail */,
+				EB0DFD2E286B883800DEBC5F /* Favorite */,
+				EB0DFD2D286B882D00DEBC5F /* About */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		EB0DFD2A286B880100DEBC5F /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				EB0DFD34286B88B300DEBC5F /* Home */,
+				EB0DFD33286B88AB00DEBC5F /* Detail */,
+				EB0DFD32286B88A600DEBC5F /* Favorite */,
+				EB0DFD31286B88A000DEBC5F /* About */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		EB0DFD2B286B880A00DEBC5F /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				EB0DFD37286B88E600DEBC5F /* DataSource */,
+				EB0DFD36286B88C900DEBC5F /* Repository */,
+				EB0DFD35286B88BF00DEBC5F /* Models */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		EB0DFD2C286B881500DEBC5F /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				EB0DFD3B286B893300DEBC5F /* Network */,
+				EB0DFD3A286B892800DEBC5F /* Database */,
+				EB0DFD39286B891800DEBC5F /* Utility */,
+				EB0DFD38286B891300DEBC5F /* Themes */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		EB0DFD2D286B882D00DEBC5F /* About */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = About;
+			sourceTree = "<group>";
+		};
+		EB0DFD2E286B883800DEBC5F /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Favorite;
+			sourceTree = "<group>";
+		};
+		EB0DFD2F286B883F00DEBC5F /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		EB0DFD30286B884500DEBC5F /* Home */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		EB0DFD31286B88A000DEBC5F /* About */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = About;
+			sourceTree = "<group>";
+		};
+		EB0DFD32286B88A600DEBC5F /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Favorite;
+			sourceTree = "<group>";
+		};
+		EB0DFD33286B88AB00DEBC5F /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		EB0DFD34286B88B300DEBC5F /* Home */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		EB0DFD35286B88BF00DEBC5F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		EB0DFD36286B88C900DEBC5F /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		EB0DFD37286B88E600DEBC5F /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DataSource;
+			sourceTree = "<group>";
+		};
+		EB0DFD38286B891300DEBC5F /* Themes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Themes;
+			sourceTree = "<group>";
+		};
+		EB0DFD39286B891800DEBC5F /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		EB0DFD3A286B892800DEBC5F /* Database */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		EB0DFD3B286B893300DEBC5F /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
