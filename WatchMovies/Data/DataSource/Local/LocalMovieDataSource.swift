@@ -10,10 +10,9 @@ import Combine
 import CoreData
 
 protocol LocalMovieDataSource {
-    func provideFavoriteTable(movie: MovieEntity)
     func saveFavorite(movie: MovieEntity, completion: @escaping (Result<String, Error>) -> Void)
     func deleteFavorite(movie: MovieEntity, completion: @escaping (Result<String, Error>) -> Void)
-    func getListFavorite() -> Future<[FavoriteTable], Error>
+    func getListFavorite(completion: @escaping (Result<[FavoriteTable], Error>) -> Void)
 }
 
 class LocalMovieDataSourceImpl : LocalMovieDataSource{
@@ -24,8 +23,8 @@ class LocalMovieDataSourceImpl : LocalMovieDataSource{
         self.presistence = presistence
     }
     
-    func provideFavoriteTable(movie: MovieEntity){
-        let table = FavoriteTable(context: presistence.getViewContext())
+    private func provideFavoriteTable(movie: MovieEntity, context: NSManagedObjectContext){
+        let table = FavoriteTable(context: context)
         table.id = Int32(movie.id ?? 0)
         table.title = movie.title ?? ""
         table.genres = movie.genres.map{String($0.name ?? "")}.joined(separator: ",")
@@ -34,46 +33,46 @@ class LocalMovieDataSourceImpl : LocalMovieDataSource{
     }
     
     func saveFavorite(movie: MovieEntity, completion: @escaping (Result<String, Error>) -> Void) {
-        do {
-            provideFavoriteTable(movie: movie)
-            try presistence.getViewContext().save()
-            completion(.success("Success save to favorite"))
-        }catch {
-            completion(.failure(error))
-        }
-    }
-    
-    func deleteFavorite(movie: MovieEntity, completion: @escaping (Result<String, Error>) -> Void) {
-        let viewContext = presistence.getViewContext()
-        do {
-            let favorites : NSFetchRequest<FavoriteTable> = FavoriteTable.fetchRequest()
-            let results = try viewContext.fetch(favorites)
-            results.filter{
-                $0.id == movie.id!
-            }.forEach { item in
-                viewContext.delete(item)
-            }
-            try viewContext.save()
-            completion(.success("Success delete to favorite"))
-        }catch {
-            completion(.failure(error))
-            viewContext.rollback()
-        }
-    }
-    
-    func getListFavorite() -> Future<[FavoriteTable], Error> {
-        return Future { completion in
+        presistence.getPresistenContainer().performBackgroundTask { context in
+            self.provideFavoriteTable(movie: movie, context: context)
             do {
-                let viewContext = self.presistence.getViewContext()
-                let favorites : NSFetchRequest<FavoriteTable> = FavoriteTable.fetchRequest()
-                let results = try viewContext.fetch(favorites)
-                completion(.success(results))
+                try context.save()
+                completion(.success("Success save favorite"))
             }catch {
                 completion(.failure(error))
             }
         }
     }
     
+    func deleteFavorite(movie: MovieEntity, completion: @escaping (Result<String, Error>) -> Void) {
+        presistence.getPresistenContainer().performBackgroundTask{ context in
+            do {
+                let favorites : NSFetchRequest<FavoriteTable> = FavoriteTable.fetchRequest()
+                let results = try context.fetch(favorites)
+                results.filter{
+                    $0.id == movie.id!
+                }.forEach { item in
+                    context.delete(item)
+                }
+                try context.save()
+                completion(.success("Success delete favorite"))
+            }catch {
+                completion(.failure(error))
+                context.rollback()
+            }
+        }
+    }
     
-    
+    func getListFavorite(completion: @escaping (Result<[FavoriteTable], Error>) -> Void) {
+        let context = presistence.getViewContext()
+        context.perform {
+            do {
+                let request : NSFetchRequest<FavoriteTable> = FavoriteTable.fetchRequest()
+                let favorites = try context.fetch(request)
+                completion(.success(favorites))
+            }catch {
+                completion(.failure(error))
+            }
+        }
+    }
 }

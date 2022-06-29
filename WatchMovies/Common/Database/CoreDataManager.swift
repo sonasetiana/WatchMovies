@@ -23,6 +23,11 @@ class CoreDataManager {
         viewContext = presistenContainer.viewContext
     }
     
+    
+    func getPresistenContainer() -> NSPersistentContainer {
+        return presistenContainer
+    }
+    
     func getViewContext() -> NSManagedObjectContext {
         return viewContext
     }

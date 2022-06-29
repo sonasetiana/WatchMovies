@@ -24,6 +24,7 @@
 		EB0DFD56286BD58200DEBC5F /* RemoteMovieDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0DFD55286BD58200DEBC5F /* RemoteMovieDataSource.swift */; };
 		EB0DFD58286BD85300DEBC5F /* LocalMovieDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0DFD57286BD85300DEBC5F /* LocalMovieDataSource.swift */; };
 		EB0DFD5A286BD8C700DEBC5F /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0DFD59286BD8C700DEBC5F /* CoreDataManager.swift */; };
+		EB0DFD5C286BE8D100DEBC5F /* MovieRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0DFD5B286BE8D100DEBC5F /* MovieRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		EB0DFD55286BD58200DEBC5F /* RemoteMovieDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteMovieDataSource.swift; sourceTree = "<group>"; };
 		EB0DFD57286BD85300DEBC5F /* LocalMovieDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalMovieDataSource.swift; sourceTree = "<group>"; };
 		EB0DFD59286BD8C700DEBC5F /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		EB0DFD5B286BE8D100DEBC5F /* MovieRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +212,7 @@
 		EB0DFD36286B88C900DEBC5F /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				EB0DFD5B286BE8D100DEBC5F /* MovieRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -370,6 +373,7 @@
 				EB0DFD54286BD17A00DEBC5F /* MovieEntity.swift in Sources */,
 				EB0DFD49286B8C0B00DEBC5F /* ViewUtils.swift in Sources */,
 				EB0DFD19286B827F00DEBC5F /* ContentView.swift in Sources */,
+				EB0DFD5C286BE8D100DEBC5F /* MovieRepository.swift in Sources */,
 				EB0DFD3D286B89DC00DEBC5F /* AppIcons.swift in Sources */,
 				EB0DFD3F286B8A4200DEBC5F /* AppSpacings.swift in Sources */,
 				EB0DFD4D286B8F6800DEBC5F /* AppConfigs.swift in Sources */,
