@@ -14,6 +14,7 @@ protocol MovieRepository {
     func searchMovie(keyword: String, completion: @escaping (Result<[MovieEntity], Error>) -> Void)
     func saveFavorite(movie: MovieEntity, completion: @escaping (Result<String, Error>) -> Void)
     func deleteFavorite(movie: MovieEntity, completion: @escaping (Result<String, Error>) -> Void)
+    func deleteFavorite(table: FavoriteTable, completion: @escaping (Result<String, Error>) -> Void)
     func getListFavorite(completion: @escaping (Result<[FavoriteTable], Error>) -> Void)
 }
 
@@ -84,6 +85,12 @@ class MovieRepositoryImpl : MovieRepository{
     func deleteFavorite(movie: MovieEntity, completion: @escaping (Result<String, Error>) -> Void) {
         DispatchQueue.main.async {
             self.localDataSource.deleteFavorite(movie: movie, completion: completion)
+        }
+    }
+    
+    func deleteFavorite(table: FavoriteTable, completion: @escaping (Result<String, Error>) -> Void) {
+        DispatchQueue.main.async {
+            self.localDataSource.deleteFavorite(table: table, completion: completion)
         }
     }
     

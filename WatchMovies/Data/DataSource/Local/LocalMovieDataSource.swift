@@ -12,6 +12,7 @@ import CoreData
 protocol LocalMovieDataSource {
     func saveFavorite(movie: MovieEntity, completion: @escaping (Result<String, Error>) -> Void)
     func deleteFavorite(movie: MovieEntity, completion: @escaping (Result<String, Error>) -> Void)
+    func deleteFavorite(table: FavoriteTable, completion: @escaping (Result<String, Error>) -> Void)
     func getListFavorite(completion: @escaping (Result<[FavoriteTable], Error>) -> Void)
 }
 
@@ -54,6 +55,19 @@ class LocalMovieDataSourceImpl : LocalMovieDataSource{
                 }.forEach { item in
                     context.delete(item)
                 }
+                try context.save()
+                completion(.success("Success delete favorite"))
+            }catch {
+                completion(.failure(error))
+                context.rollback()
+            }
+        }
+    }
+    
+    func deleteFavorite(table: FavoriteTable, completion: @escaping (Result<String, Error>) -> Void) {
+        presistence.getPresistenContainer().performBackgroundTask{ context in
+            do {
+                context.delete(table)
                 try context.save()
                 completion(.success("Success delete favorite"))
             }catch {

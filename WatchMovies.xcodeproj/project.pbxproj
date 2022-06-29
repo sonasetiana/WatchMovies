@@ -28,6 +28,9 @@
 		EB4EBDF5286C90D3002458F2 /* HomeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4EBDF4286C90D3002458F2 /* HomeUseCase.swift */; };
 		EB4EBDF7286C921E002458F2 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4EBDF6286C921E002458F2 /* HomeViewModel.swift */; };
 		EB4EBDF9286C939F002458F2 /* DetailUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4EBDF8286C939F002458F2 /* DetailUseCase.swift */; };
+		EB4EBDFB286C9B19002458F2 /* FavoriteUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4EBDFA286C9B19002458F2 /* FavoriteUseCase.swift */; };
+		EB4EBDFF286C9CE6002458F2 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4EBDFE286C9CE6002458F2 /* DetailViewModel.swift */; };
+		EB4EBE01286C9EB2002458F2 /* FavoriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4EBE00286C9EB2002458F2 /* FavoriteViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +54,9 @@
 		EB4EBDF4286C90D3002458F2 /* HomeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUseCase.swift; sourceTree = "<group>"; };
 		EB4EBDF6286C921E002458F2 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		EB4EBDF8286C939F002458F2 /* DetailUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUseCase.swift; sourceTree = "<group>"; };
+		EB4EBDFA286C9B19002458F2 /* FavoriteUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteUseCase.swift; sourceTree = "<group>"; };
+		EB4EBDFE286C9CE6002458F2 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		EB4EBE00286C9EB2002458F2 /* FavoriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,7 +131,6 @@
 				EB0DFD34286B88B300DEBC5F /* Home */,
 				EB0DFD33286B88AB00DEBC5F /* Detail */,
 				EB0DFD32286B88A600DEBC5F /* Favorite */,
-				EB0DFD31286B88A000DEBC5F /* About */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -160,6 +165,7 @@
 		EB0DFD2E286B883800DEBC5F /* Favorite */ = {
 			isa = PBXGroup;
 			children = (
+				EB4EBE00286C9EB2002458F2 /* FavoriteViewModel.swift */,
 			);
 			path = Favorite;
 			sourceTree = "<group>";
@@ -167,6 +173,7 @@
 		EB0DFD2F286B883F00DEBC5F /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				EB4EBDFE286C9CE6002458F2 /* DetailViewModel.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -179,16 +186,10 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
-		EB0DFD31286B88A000DEBC5F /* About */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = About;
-			sourceTree = "<group>";
-		};
 		EB0DFD32286B88A600DEBC5F /* Favorite */ = {
 			isa = PBXGroup;
 			children = (
+				EB4EBDFA286C9B19002458F2 /* FavoriteUseCase.swift */,
 			);
 			path = Favorite;
 			sourceTree = "<group>";
@@ -385,6 +386,8 @@
 				EB0DFD19286B827F00DEBC5F /* ContentView.swift in Sources */,
 				EB0DFD5C286BE8D100DEBC5F /* MovieRepository.swift in Sources */,
 				EB0DFD3D286B89DC00DEBC5F /* AppIcons.swift in Sources */,
+				EB4EBDFF286C9CE6002458F2 /* DetailViewModel.swift in Sources */,
+				EB4EBDFB286C9B19002458F2 /* FavoriteUseCase.swift in Sources */,
 				EB0DFD3F286B8A4200DEBC5F /* AppSpacings.swift in Sources */,
 				EB0DFD4D286B8F6800DEBC5F /* AppConfigs.swift in Sources */,
 				EB0DFD5A286BD8C700DEBC5F /* CoreDataManager.swift in Sources */,
@@ -394,6 +397,7 @@
 				EB4EBDF9286C939F002458F2 /* DetailUseCase.swift in Sources */,
 				EB0DFD56286BD58200DEBC5F /* RemoteMovieDataSource.swift in Sources */,
 				EB0DFD17286B827F00DEBC5F /* WatchMoviesApp.swift in Sources */,
+				EB4EBE01286C9EB2002458F2 /* FavoriteViewModel.swift in Sources */,
 				EB0DFD58286BD85300DEBC5F /* LocalMovieDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
