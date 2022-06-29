@@ -76,23 +76,19 @@ class MovieRepositoryImpl : MovieRepository{
     }
     
     func saveFavorite(movie: MovieEntity, completion: @escaping (Result<String, Error>) -> Void) {
-        localDataSource
-            .saveFavorite(movie: movie) { result in
-                completion(result)
-            }
+        DispatchQueue.main.async {
+            self.localDataSource.saveFavorite(movie: movie, completion: completion)
+        }
     }
     
     func deleteFavorite(movie: MovieEntity, completion: @escaping (Result<String, Error>) -> Void) {
-        localDataSource
-            .deleteFavorite(movie: movie) { result in
-                completion(result)
-            }
+        DispatchQueue.main.async {
+            self.localDataSource.deleteFavorite(movie: movie, completion: completion)
+        }
     }
     
     func getListFavorite(completion: @escaping (Result<[FavoriteTable], Error>) -> Void) {
-        localDataSource.getListFavorite { results in
-            completion(results)
-        }
+        localDataSource.getListFavorite(completion: completion)
     }
     
     
