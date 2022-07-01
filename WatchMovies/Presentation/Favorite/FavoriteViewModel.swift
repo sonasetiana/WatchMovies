@@ -17,6 +17,7 @@ class FavoriteViewModel : ObservableObject {
     
     init(useCase : FavoriteUseCase) {
         self.useCase = useCase
+        getListFavorite()
     }
     
     func getListFavorite() {
@@ -38,12 +39,14 @@ class FavoriteViewModel : ObservableObject {
     }
     
     func removeFromFavorite(favorite: FavoriteTable) {
-        useCase.removeFavorite(table: favorite) { result in
+        useCase.removeFavorite(id: Int(favorite.id)) { result in
             switch(result) {
             case .success(let msg):
                 toast(message: msg)
+                self.getListFavorite()
             case .failure(let error):
-                toast(message: error.localizedDescription)
+                print("Remove Favorite: ", error.localizedDescription)
+                toast(message: "Failed remove from favorite")
             }
         }
     }

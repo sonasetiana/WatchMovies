@@ -9,7 +9,7 @@ import Foundation
 
 protocol FavoriteUseCase {
     func getListFavorite(completion: @escaping (Result<[FavoriteTable], Error>) -> Void)
-    func removeFavorite(table: FavoriteTable, completion: @escaping (Result<String, Error>) -> Void)
+    func removeFavorite(id: Int, completion: @escaping (Result<String, Error>) -> Void)
 }
 
 class FavoriteInteractor : FavoriteUseCase {
@@ -23,7 +23,7 @@ class FavoriteInteractor : FavoriteUseCase {
         repository.getListFavorite(completion: completion)
     }
     
-    func removeFavorite(table: FavoriteTable, completion: @escaping (Result<String, Error>) -> Void) {
-        repository.deleteFavorite(table: table, completion: completion)
+    func removeFavorite(id: Int, completion: @escaping (Result<String, Error>) -> Void) {
+        repository.deleteFavorite(movieId: id, completion: completion)
     }
 }

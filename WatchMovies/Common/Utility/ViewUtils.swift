@@ -24,5 +24,7 @@ func toast(message: String?) {
 }
 
 func getImageMovie(imagePath: String, imageSize: ImageSize) -> String{
-    return "\(AppConfigs.IMAGE_URL)/\(imageSize.rawValue)\(imagePath)"
+    let link = "\(AppConfigs.IMAGE_URL)\(imageSize.rawValue)/\(imagePath)"
+    print(link)
+    return link
 }

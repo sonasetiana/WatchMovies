@@ -7,15 +7,16 @@
 
 import Foundation
 import Combine
+import CloudKit
 
 protocol MovieRepository {
     func getListMovie(completion: @escaping (Result<[MovieEntity], Error>) -> Void)
-    func getDetailMovie(movieId: Int, completion: @escaping (Result<MovieEntity, Error>) -> Void)
+    func getDetailMovie(movieId: Int, completion: @escaping (Result<MovieDetailEntity, Error>) -> Void)
     func searchMovie(keyword: String, completion: @escaping (Result<[MovieEntity], Error>) -> Void)
-    func saveFavorite(movie: MovieEntity, completion: @escaping (Result<String, Error>) -> Void)
-    func deleteFavorite(movie: MovieEntity, completion: @escaping (Result<String, Error>) -> Void)
-    func deleteFavorite(table: FavoriteTable, completion: @escaping (Result<String, Error>) -> Void)
+    func saveFavorite(movie: MovieDetailEntity, completion: @escaping (Result<String, Error>) -> Void)
+    func deleteFavorite(movieId: Int, completion: @escaping (Result<String, Error>) -> Void)
     func getListFavorite(completion: @escaping (Result<[FavoriteTable], Error>) -> Void)
+    func findFavorite(id: Int, completion: @escaping (Result<Bool, Error>) -> Void)
 }
 
 class MovieRepositoryImpl : MovieRepository{
@@ -31,25 +32,19 @@ class MovieRepositoryImpl : MovieRepository{
     func getListMovie(completion: @escaping (Result<[MovieEntity], Error>) -> Void) {
         remoteDataSource
             .getListMovie()
-            .publishDecodable(type: [MovieEntity].self)
-            .subscribe(on: DispatchQueue.global(qos: .background))
-            .receive(on: DispatchQueue.main)
             .sink(receiveValue: { (response) in
                 switch response.result {
                 case .success(let items):
-                    completion(.success(items))
+                    completion(.success(items.results))
                 case .failure(let error):
                     completion(.failure(error))
                 }
             }).store(in: &cancellableSet)
     }
     
-    func getDetailMovie(movieId: Int, completion: @escaping (Result<MovieEntity, Error>) -> Void) {
+    func getDetailMovie(movieId: Int, completion: @escaping (Result<MovieDetailEntity, Error>) -> Void) {
         remoteDataSource
             .getDetailMovie(movieId: movieId)
-            .publishDecodable(type: MovieEntity.self)
-            .subscribe(on: DispatchQueue.global(qos: .background))
-            .receive(on: DispatchQueue.main)
             .sink(receiveValue: { (response) in
                 switch response.result {
                 case .success(let items):
@@ -63,34 +58,29 @@ class MovieRepositoryImpl : MovieRepository{
     func searchMovie(keyword: String, completion: @escaping (Result<[MovieEntity], Error>) -> Void) {
         remoteDataSource
             .searchMovie(keyword: keyword)
-            .publishDecodable(type: [MovieEntity].self)
-            .subscribe(on: DispatchQueue.global(qos: .background))
-            .receive(on: DispatchQueue.main)
             .sink(receiveValue: { (response) in
                 switch response.result {
                 case .success(let items):
-                    completion(.success(items))
+                    completion(.success(items.results))
                 case .failure(let error):
                     completion(.failure(error))
                 }
             }).store(in: &cancellableSet)
     }
     
-    func saveFavorite(movie: MovieEntity, completion: @escaping (Result<String, Error>) -> Void) {
-        DispatchQueue.main.async {
-            self.localDataSource.saveFavorite(movie: movie, completion: completion)
+    func saveFavorite(movie: MovieDetailEntity, completion: @escaping (Result<String, Error>) -> Void) {
+        localDataSource.saveFavorite(movie: movie) { result in
+            DispatchQueue.main.async {
+                completion(result)
+            }
         }
     }
     
-    func deleteFavorite(movie: MovieEntity, completion: @escaping (Result<String, Error>) -> Void) {
-        DispatchQueue.main.async {
-            self.localDataSource.deleteFavorite(movie: movie, completion: completion)
-        }
-    }
-    
-    func deleteFavorite(table: FavoriteTable, completion: @escaping (Result<String, Error>) -> Void) {
-        DispatchQueue.main.async {
-            self.localDataSource.deleteFavorite(table: table, completion: completion)
+    func deleteFavorite(movieId: Int, completion: @escaping (Result<String, Error>) -> Void) {
+        localDataSource.deleteFavorite(movieId: movieId) { result in
+            DispatchQueue.main.async {
+                completion(result)
+            }
         }
     }
     
@@ -98,5 +88,7 @@ class MovieRepositoryImpl : MovieRepository{
         localDataSource.getListFavorite(completion: completion)
     }
     
-    
+    func findFavorite(id: Int, completion: @escaping (Result<Bool, Error>) -> Void) {
+        localDataSource.findFavorite(id: id, completion: completion)
+    }
 }

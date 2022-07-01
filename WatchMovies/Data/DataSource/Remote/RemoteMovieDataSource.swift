@@ -10,22 +10,52 @@ import Combine
 import Alamofire
 
 protocol RemoteMovieDataSource {
-    func getListMovie() -> DataRequest
-    func getDetailMovie(movieId: Int) -> DataRequest
-    func searchMovie(keyword: String) -> DataRequest
+    func getListMovie() -> AnyPublisher<DataResponse<MovieResponse, Error>, Never>
+    func getDetailMovie(movieId: Int) -> AnyPublisher<DataResponse<MovieDetailEntity, Error>, Never>
+    func searchMovie(keyword: String) -> AnyPublisher<DataResponse<MovieResponse, Error>, Never>
 }
 
 class RemoteMovieDataSourceImpl : RemoteMovieDataSource {
     
-    func getListMovie() -> DataRequest {
-        return AF.request("\(AppConfigs.BASE_URL)/movie/popular?api_key=\(AppConfigs.API_KEY)&language=id-ID", method: .get)
+    func getListMovie() -> AnyPublisher<DataResponse<MovieResponse, Error>, Never> {
+        let url = "\(AppConfigs.BASE_URL)movie/popular?api_key=\(AppConfigs.API_KEY)&language=id-ID"
+        return AF.request(URL(string: url)!, method: .get)
+            .validate()
+            .publishDecodable(type: MovieResponse.self)
+            .map { response in
+                response.mapError { error in
+                    return error
+                }
+            }
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
     }
     
-    func getDetailMovie(movieId: Int) -> DataRequest {
-        return AF.request("\(AppConfigs.BASE_URL)/movie/\(movieId))?api_key=\(AppConfigs.API_KEY)&language=id-ID", method: .get)
+    func getDetailMovie(movieId: Int) -> AnyPublisher<DataResponse<MovieDetailEntity, Error>, Never> {
+        let url = "\(AppConfigs.BASE_URL)movie/\(movieId))?api_key=\(AppConfigs.API_KEY)&language=id-ID"
+        return AF.request(URL(string: url)!, method: .get)
+            .validate()
+            .publishDecodable(type: MovieDetailEntity.self)
+            .map { response in
+                response.mapError { error in
+                    return error
+                }
+            }
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
     }
     
-    func searchMovie(keyword: String) -> DataRequest {
-        return AF.request("\(AppConfigs.BASE_URL)/search/movie?api_key=\(AppConfigs.API_KEY)&language=id-ID&query=\(keyword)", method: .get)
+    func searchMovie(keyword: String) -> AnyPublisher<DataResponse<MovieResponse, Error>, Never> {
+        let url = "\(AppConfigs.BASE_URL)search/movie?api_key=\(AppConfigs.API_KEY)&language=id-ID&query=\(keyword)"
+        return AF.request(URL(string: url)!, method: .get)
+            .validate()
+            .publishDecodable(type: MovieResponse.self)
+            .map { response in
+                response.mapError { error in
+                    return error
+                }
+            }
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
     }
 }

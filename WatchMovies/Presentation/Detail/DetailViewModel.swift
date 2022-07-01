@@ -8,31 +8,48 @@
 import Foundation
 
 class DetailViewModel : ObservableObject {
+    let movieId: Int?
     let useCase : DetailUseCase
     
-    @Published var movie : MovieEntity?
+    @Published var movie : MovieDetailEntity?
     @Published var errorMsg : String = ""
     @Published var loading : Bool = false
+    @Published var isFavorite : Bool = false
     
-    init(useCase : DetailUseCase) {
+    init(movieId: Int?, useCase : DetailUseCase) {
+        self.movieId = movieId
         self.useCase = useCase
+        getDetailMovie()
     }
     
-    func getDetailMovie(movieId: Int) {
+    func getDetailMovie() {
+        if movieId == nil {
+            return
+        }
+        
         if loading == true {
             return
         }
         
         loading = true
-        useCase.getDetailMovie(movieId: movieId) { result in
+        useCase.getDetailMovie(movieId: movieId!) { result in
             switch(result){
             case .success(let movie) :
                 self.loading = false
                 self.movie = movie
+                self.checkIsFavorite()
             case .failure(let error) :
                 self.loading = false
                 self.errorMsg = error.localizedDescription
             }
+        }
+    }
+    
+    func setFavotite() {
+        if isFavorite {
+            removeFromFavorite()
+        } else {
+            saveToFavorite()
         }
     }
     
@@ -43,10 +60,12 @@ class DetailViewModel : ObservableObject {
         }
         useCase.saveMovieToFavorite(movie: movie!) { result in
             switch(result) {
-            case .success(let msg):
-                toast(message: msg)
-            case .failure(let error):
-                toast(message: error.localizedDescription)
+                case .success(let msg):
+                    toast(message: msg)
+                    self.checkIsFavorite()
+                case .failure(let error):
+                    print("Save Favorite: ", error.localizedDescription)
+                    toast(message: "Failed save favorite")
             }
         }
     }
@@ -56,12 +75,29 @@ class DetailViewModel : ObservableObject {
             toast(message: "Error, cannot remove from favorite")
             return
         }
-        useCase.removeMovieFromFavorite(movie: movie!) { result in
+        useCase.removeMovieFromFavorite(id: movie?.id ?? 0) { result in
             switch(result) {
-            case .success(let msg):
-                toast(message: msg)
-            case .failure(let error):
-                toast(message: error.localizedDescription)
+                case .success(let msg):
+                    toast(message: msg)
+                    self.checkIsFavorite()
+                case .failure(let error):
+                    print("Remove Favorite: ", error.localizedDescription)
+                    toast(message: "Success remove favorite")
+            }
+        }
+    }
+    
+    func checkIsFavorite() {
+        if movieId == nil {
+            isFavorite = false
+            return
+        }
+        self.useCase.findFavorite(id: movieId!) { result in
+            switch(result) {
+            case .success(let isFavorite):
+                self.isFavorite = isFavorite
+            case .failure:
+                self.isFavorite = false
             }
         }
     }
