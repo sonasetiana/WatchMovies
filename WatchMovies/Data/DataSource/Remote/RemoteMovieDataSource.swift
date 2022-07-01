@@ -46,7 +46,7 @@ class RemoteMovieDataSourceImpl : RemoteMovieDataSource {
     }
     
     func searchMovie(keyword: String) -> AnyPublisher<DataResponse<MovieResponse, Error>, Never> {
-        let url = "\(AppConfigs.BASE_URL)search/movie?api_key=\(AppConfigs.API_KEY)&language=id-ID&query=\(keyword)"
+        let url = "\(AppConfigs.BASE_URL)search/movie?api_key=\(AppConfigs.API_KEY)&language=id-ID&query=\(keyword.replacingOccurrences(of: " ", with: "%20"))"
         return AF.request(URL(string: url)!, method: .get)
             .validate()
             .publishDecodable(type: MovieResponse.self)
